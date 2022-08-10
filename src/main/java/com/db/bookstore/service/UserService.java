@@ -9,33 +9,44 @@ import java.util.List;
 
 @Service
 public class UserService {
-    @Autowired
-    UserRepository userRepository;
+	@Autowired
+	UserRepository userRepository;
 
-    public void insertUser(User user){
-        userRepository.save(user);
-    }
-    public User findByUsernameOrEmailAndPassword(User user) throws Exception {
-       List<User> users = userRepository.findByUsernameOrEmailAndPassword(user.getUsername(), user.getEmail(), user.getPassword());
+	public void insertUser(User user) {
+		userRepository.save(user);
+	}
 
-       if(users.size() == 0)
-       {
-           throw new Exception("No user found");
-       }
+	public User findByUsernameOrEmailAndPassword(User user) throws Exception {
+		List<User> users = userRepository.findByUsernameOrEmailAndPassword(user.getUsername(), user.getEmail(), user.getPassword());
 
-       if(users.size() == 1)
-       {
-           return users.get(0);
-       }
+		if(users.size() == 0)
+		{
+			throw new Exception("No user found");
+		}
 
-       if(users.size() > 1)
-       {
-           throw new Exception("Database error");
-       }
+		if(users.size() == 1)
+		{
+			return users.get(0);
+		}
 
-        return null;
-    }
+		if(users.size() > 1)
+		{
+			throw new Exception("Database error");
+		}
 
+		return null;
+	}
 
+	public User findById(int id) {
+		User user = userRepository.findById(id);
+		return user;
+	}
+
+	public boolean checkIfAdmin(User user) {
+		if (user.getRole().equals("client")) {
+			return false;
+		}
+		return true;
+	}
 
 }

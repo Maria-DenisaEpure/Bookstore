@@ -8,18 +8,13 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-@Entity
+//@Entity
 @NoArgsConstructor
 @Getter
 @Setter
-public class Book {
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int id;
+public class NewBook {
 	private String title;
-	@ManyToMany
-	private Set<Author> authorList;
+	private int[] authorIds;
 	private int pages;
 	private String publisher;
-
 }
