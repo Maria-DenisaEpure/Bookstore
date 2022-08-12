@@ -14,10 +14,10 @@ import javax.persistence.Id;
 @Getter
 @Setter
 public class Author {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
-    private String name;
-    private int birthYear;
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private int id;
+	private String name;
+	private int birthYear;
 
 }
